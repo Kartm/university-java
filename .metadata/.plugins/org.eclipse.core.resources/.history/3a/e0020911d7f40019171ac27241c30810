@@ -1,0 +1,12 @@
+package arithmeticOperations;
+import java.math.BigInteger;
+import java.math.BigDecimal;
+
+public class bigInts {
+	public static void main(String[] args) {
+		BigInteger bigInt = BigInteger.valueOf(12312123123);
+		System.out.println(bigInt);
+		bigInt = bigInt.add(new BigInteger("100000000000000000000000000000000000000000000000"));
+		System.out.println(bigInt);
+	}
+}

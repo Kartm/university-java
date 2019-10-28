@@ -1,0 +1,9 @@
+package lab3;
+
+public class ArrayOperations {
+	public static void main(int[] args) {
+
+	}
+	
+
+}
