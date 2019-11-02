@@ -22,16 +22,22 @@ public class ArrayOperations {
 	
 	public static void printArray(int[] arr, int no) {
 		if(arr != null && arr.length > 0) {
+			String seperator = "\t";
 			for (int i = 0; i < arr.length; i++) {
-				System.out.print(arr[i] + "\t");
-				if(i % no == no - 1) {
-					System.out.print("\n");
+				if((i + 1) % no != 0) {
+					seperator = "\t";
+				} else {
+					seperator = "\n";
 				}
+				
+				System.out.print(arr[i] + seperator);
+			}
+			if(seperator.equals("\t")) {
+				System.out.print("\n");
 			}
 		} else {
-			System.out.print("No data to print");
+			System.out.print("No data to print\n");
 		}
-		System.out.print("\n");
 	}
 
 	public static int[] fillArray(int[] arrayToFill) {

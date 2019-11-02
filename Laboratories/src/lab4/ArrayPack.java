@@ -1,17 +1,10 @@
 package lab4;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class ArrayPack {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int[] arr1 = readArray(sc);
-		int[] arr2 = readArray(sc);
-		System.out.println("");
-		int[] appendedArr = appendArrays(arr1, arr2);
-		showArr(appendedArr);
-		System.out.println("Maximal element: " + getMaximalElement(appendedArr));
-		sc.close();
 	}
 	
 	public static int[] readArray(Scanner sc) {
@@ -61,6 +54,51 @@ public class ArrayPack {
 		}
 		return min;
 	}
+	
+	public int[] getGreaterThan(int[] inArr, int limit) {
+		
+	}
+	
+public int[] getLessThan(int[] inArr, int limit) {
+		
+	}
+
+public int[] getRange(int[] inArr, int lowerLimit, int upperLimit) {
+	
+}
+
+public static boolean isAnElement(int[] inArr, int what2Look4) {
+	for(int i = 0; i < inArr.length; i++) {
+		if(inArr[i] == what2Look4) {
+			return true;
+		}
+	}
+	return false;
+}
+
+public static int[] uniqueElements(int[] a1, int[] a2) {
+	int uniqueCounter = 0;
+	for(int i = 0; i < a1.length; i++) {
+		if(isAnElement(a2, a1[i]) == false) {
+			uniqueCounter++;
+		}
+	}
+	
+	int[] resultArr = new int[uniqueCounter];
+	int resultArrIndex = 0;
+	
+	for(int i = 0; i < a1.length; i++) {
+		if(isAnElement(a2, a1[i]) == false) {
+			resultArr[resultArrIndex] = a1[i];
+			resultArrIndex++;
+		}
+	}
+	return resultArr;
+}
+
+public static int[] commonElements(int[] a1, int[] a2) {
+	
+}
 	
 	public static void showArr(int[] arr) {
 		if(arr != null && arr.length > 0) {
