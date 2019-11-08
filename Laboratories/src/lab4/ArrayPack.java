@@ -8,35 +8,35 @@ public class ArrayPack {
 		int[] arr1 = readArray(sc);
 		int[] arr2 = readArray(sc);
 		sc.close();
-		
+
 		System.out.println("First array: ");
 		showArr(arr1);
-		
+
 		System.out.println("Second array: ");
 		showArr(arr2);
-		
+
 		System.out.println("Unique elements: ");
 		showArr(uniqueElements(arr1, arr2));
-		
+
 		System.out.println("Common elements: ");
 		showArr(commonElements(arr1, arr2));
-		
+
 		System.out.println("Appended arrays: ");
 		int[] appendedArrays = appendArrays(arr1, arr2);
 		showArr(appendedArrays);
-		
+
 		System.out.println("Minimal element in arrays: ");
 		System.out.println(getMinimalElement(appendedArrays));
-		
+
 		System.out.println("Maximal element in arrays: ");
 		System.out.println(getMaximalElement(appendedArrays));
-		
+
 		System.out.println("Elements less than 5 in arrays: ");
 		showArr(getLessThan(appendedArrays, 5));
-		
+
 		System.out.println("Elements greater than 5 in arrays: ");
 		showArr(getGreaterThan(appendedArrays, 5));
-		
+
 		System.out.println("Elements in range between 5 and 10 in arrays: ");
 		showArr(getRange(appendedArrays, 5, 10));
 	}
@@ -96,12 +96,12 @@ public class ArrayPack {
 	public static int getMaximalElement(int[] inArr) {
 		return GetExtremumElement(inArr, ElementCompare.GREATER);
 	}
-	
+
 	private static int[] limitArray(int[] inArr, int limit, ElementCompare compare) {
 		int validElementCounter = 0;
 		boolean isLookingForGreater = compare == ElementCompare.GREATER;
 		for (int i = 0; i < inArr.length; i++) {
-			if(isLookingForGreater) {
+			if (isLookingForGreater) {
 				if (inArr[i] > limit) {
 					validElementCounter++;
 				}
@@ -116,7 +116,7 @@ public class ArrayPack {
 		int resultArrIndex = 0;
 
 		for (int i = 0; i < inArr.length; i++) {
-			if(isLookingForGreater) {
+			if (isLookingForGreater) {
 				if (inArr[i] > limit) {
 					resultArr[resultArrIndex] = inArr[i];
 					resultArrIndex++;
@@ -129,7 +129,7 @@ public class ArrayPack {
 			}
 		}
 		return resultArr;
-		
+
 	}
 
 	public static int[] getGreaterThan(int[] inArr, int limit) {
