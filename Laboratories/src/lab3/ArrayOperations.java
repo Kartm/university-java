@@ -9,7 +9,7 @@ public class ArrayOperations {
 		printArray(emptyArray, 3);
 		printArray(null, 3);
 		anotherArray = createArray(8);
-		printArray(anotherArray, 4);
+		printArray(anotherArray, 8);
 		System.out.println("Test average: " + findAverage(testArray));
 		System.out.println("Empty average: " + findAverage(emptyArray));
 		anotherArray = selectGreaterThan(testArray, 7);
@@ -23,9 +23,9 @@ public class ArrayOperations {
 	public static void printArray(int[] arr, int no) {
 		if(arr != null && arr.length > 0) {
 			String seperator = "\t";
-			for (int i = 0; i < arr.length; i++) {
-				if((i + 1) % no != 0) {
-					seperator = "\t";
+			for (int i = arr.length - 1; i >= 0; i--) {
+				if((i + 0) % no != 0) {
+					seperator = "  -  ";
 				} else {
 					seperator = "\n";
 				}

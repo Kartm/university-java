@@ -7,6 +7,7 @@ public class ArrayPack {
 		Scanner sc = new Scanner(System.in);
 		int[] arr1 = readArray(sc);
 		int[] arr2 = readArray(sc);
+		int[] arr3 = readArray(sc);
 		sc.close();
 
 		System.out.println("First array: ");
