@@ -34,7 +34,7 @@ public class Task2 {
 	public static int TotalValueOfPositiveValuesRecursive(SimpleIntList start) {
 		int sum = 0;
 		if(start != null) {
-			sum += start.value + TotalValueOfPositiveValuesRecursive(start.next);
+			sum += (start.value > 0 ? start.value : 0) + TotalValueOfPositiveValuesRecursive(start.next);
 		}
 		return sum;
 	}
