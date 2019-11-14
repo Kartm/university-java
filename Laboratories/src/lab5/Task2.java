@@ -22,8 +22,8 @@ public class Task2 {
 			}
 
 			System.out.println("Size of the list: " + list.getSize());
-			System.out.println(SimpleIntList.toString(list));
-			System.out.println(SimpleIntList.reverseToString(list));
+//			System.out.println(SimpleIntList.toString(list));
+//			System.out.println(SimpleIntList.reverseToString(list));
 			
 			System.out.println("Recursive total of positive values: " + TotalValueOfPositiveValuesRecursive(list));
 			System.out.println("Iterative total of positive values: " + TotalValueOfPositiveValuesIterative(list));
