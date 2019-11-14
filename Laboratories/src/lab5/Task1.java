@@ -1,23 +1,37 @@
 package lab5;
 
 import java.util.Arrays;
+import java.util.Scanner;
+
+import lab4.ArrayPack;
 
 public class Task1 {
 
 	public static void main(String[] args) {
-		System.out.println("Iterative factorial of 5: ");
-		System.out.println(FactorialIterative(5));
-
-		System.out.println("Recursive factorial of 5: ");
-		System.out.println(FactorialRecursive(5));
-
-		System.out.println("Iterative GCD of 55 and 10: ");
-		System.out.println(GCDIterative(55, 10));
+		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Recursive GCD of 55 and 10: ");
-		System.out.println(GCDRecursive(55, 10));
+		System.out.print("Enter n for factorials: ");
+		int n = sc.nextInt();
+		System.out.print("Enter a and b for GCD: ");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println("Enter the integer array in the following way:");
+		System.out.println("<size> <element1> <element2> ...etc");
+		int[] arr = ArrayPack.readArray(sc);
 		
-		int[] arr = {-10, 100, -110, 10, -5, 1};
+		System.out.println("Iterative factorial of " + n + ": ");
+		System.out.println(FactorialIterative(n));
+
+		System.out.println("Recursive factorial of " + n + ": ");
+		System.out.println(FactorialRecursive(n));
+		
+
+		System.out.println("Iterative GCD of " + a + " and " + b + ": ");
+		System.out.println(GCDIterative(a, b));
+		
+		System.out.println("Recursive GCD of " + a + " and " + b + ": ");
+		System.out.println(GCDRecursive(a, b));
+		
 
 		System.out.println("Recursive number of positive values: ");
 		System.out.println(NumberOfPositiveValuesRecursive(arr));
@@ -31,6 +45,7 @@ public class Task1 {
 		System.out.println("Iterative total of positive values: ");
 		System.out.println(TotalOfPositiveValuesIterative(arr));
 		
+		sc.close();
 	}
 
 	public static int FactorialIterative(int n) {
