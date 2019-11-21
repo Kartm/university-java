@@ -1,5 +1,6 @@
 package lab4;
 
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class ArrayPack {
@@ -53,6 +54,23 @@ public class ArrayPack {
 		int inputIndex = 0;
 		while (inputIndex < arrSize) {
 			int value = sc.nextInt();
+			resultArr[inputIndex] = value;
+			inputIndex++;
+		}
+		return resultArr;
+	}
+	
+	public static BigInteger[] readBigIntegerArray(Scanner sc) {
+		int arrSize = 0;
+
+		if (sc.hasNextInt()) {
+			arrSize = sc.nextInt();
+		}
+
+		BigInteger[] resultArr = new BigInteger[arrSize];
+		int inputIndex = 0;
+		while (inputIndex < arrSize) {
+			BigInteger value = sc.nextBigInteger();
 			resultArr[inputIndex] = value;
 			inputIndex++;
 		}
