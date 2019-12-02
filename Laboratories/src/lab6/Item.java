@@ -21,6 +21,11 @@ public class Item {
 		this.type = ProductType.fromString(productType);
 	}
 	
+	public Item(ProductType product, int quantity) {
+		this.type = product;
+		this.quantity = (quantity > 0) ? quantity: this.quantity;
+	}
+
 	public void addItem() {
 		this.quantity++;
 	}
@@ -43,8 +48,21 @@ public class Item {
 		return this.quantity;
 	}
 	
+	public void setQuantity(int newQuantity) throws Exception {
+		if(newQuantity >= 0) {
+			this.quantity = newQuantity;
+		}
+		else {
+			throw new Exception("Expected positive quantity.");
+		}
+	}
+	
 	public double getTotalWeight() {
 		return this.quantity * this.type.getWeight();
+	}
+	
+	public ProductType getProductType() {
+		return this.type;
 	}
 
 	public String toString() {

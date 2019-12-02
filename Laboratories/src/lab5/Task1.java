@@ -11,6 +11,8 @@ public class Task1 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
+		// MIN and MAX values, near 0, compare the methods, use series of testing (n, n+1 etc), 
+		
 		System.out.print("Enter n for factorials: ");
 		BigInteger n = BigInteger.valueOf(sc.nextInt());
 
@@ -49,8 +51,11 @@ public class Task1 {
 	}
 
 	public static BigInteger FactorialIterative(BigInteger n) {
-		if (n.compareTo(BigInteger.valueOf(0)) <= 0) {
+		if (n.compareTo(BigInteger.valueOf(0)) < 0) {
+			System.err.println("N cannot be negative");
 			return BigInteger.valueOf(-1);
+		} else if (n.compareTo(BigInteger.valueOf(0)) == 0) {
+			return BigInteger.valueOf(1);
 		}
 		BigInteger result = BigInteger.valueOf(1);
 		for (int i = 1; n.compareTo(BigInteger.valueOf(i)) >= 0; i++) {
@@ -60,6 +65,10 @@ public class Task1 {
 	}
 
 	public static BigInteger FactorialRecursive(BigInteger n) {
+		if (n.compareTo(BigInteger.valueOf(0)) < 0) {
+			System.err.println("N cannot be negative");
+			return BigInteger.valueOf(-1);
+		}
 		if (n.compareTo(BigInteger.valueOf(1)) >= 0) {
 			return n.multiply(
 					FactorialRecursive(n.add(BigInteger.valueOf(-1))));
@@ -76,6 +85,8 @@ public class Task1 {
 	}
 
 	public static BigInteger GCDIterative(BigInteger a, BigInteger b) {
+		a = a.abs();
+		b = b.abs();
 		BigInteger number = BigInteger.valueOf(1);
 		BigInteger GCD = BigInteger.valueOf(1);
 		

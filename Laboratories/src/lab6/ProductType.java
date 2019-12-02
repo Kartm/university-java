@@ -35,4 +35,8 @@ public enum ProductType {
 			System.out.println(p.show());
 		}
 	}
+	
+	public static void main(String[] args) {
+		testMe();
+	}
 }
