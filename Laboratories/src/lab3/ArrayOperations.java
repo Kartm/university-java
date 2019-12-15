@@ -23,17 +23,16 @@ public class ArrayOperations {
 	public static void printArray(int[] arr, int no) {
 		if(arr != null && arr.length > 0) {
 			String seperator = "\t";
-			for (int i = arr.length - 1; i >= 0; i--) {
-				if((i + 0) % no != 0) {
+			int count = arr.length - 1;
+			for (int i = 0; i < arr.length; i++) {
+				if(count % no != 0) {
 					seperator = "  -  ";
 				} else {
 					seperator = "\n";
 				}
 				
 				System.out.print(arr[i] + seperator);
-			}
-			if(seperator.equals("\t")) {
-				System.out.print("\n");
+				count-- ;
 			}
 		} else {
 			System.out.print("No data to print\n");
