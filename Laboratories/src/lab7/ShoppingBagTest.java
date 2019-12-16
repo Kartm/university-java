@@ -70,4 +70,14 @@ public class ShoppingBagTest {
 		// only 30 of butter fit = 30*7.5
 		assertEquals(shoppingBag.getTotalWeight(), 225.0);
 	}
+
+	@Test
+	public void testToString() throws Exception {
+		shoppingBag = new ShoppingBag(true);
+		assertEquals(shoppingBag.toString(), "Is robust: true\n" + 
+				"ShoppingBag. Current capacity: [0/30]\n");
+		shoppingBag = new ShoppingBag(false);
+		assertEquals(shoppingBag.toString(), "Is robust: false\n" + 
+				"ShoppingBag. Current capacity: [0/30]\n");
+	}
 }

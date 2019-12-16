@@ -15,6 +15,11 @@ public class HandBag extends Bag {
 		return this.isPremiumQuality;
 	}
 	
+	public String toString() {
+		return String.format("Is premium quality: %s\n%s",
+				this.getIsPremiumQuality(), super.toString());
+	}
+	
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof HandBag) {

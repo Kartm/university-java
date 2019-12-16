@@ -13,6 +13,11 @@ protected boolean isRobust;
 	public boolean getIsRobust() {
 		return this.isRobust;
 	}
+	
+	public String toString() {
+		return String.format("Is robust: %s\n%s",
+				this.getIsRobust(), super.toString());
+	}
 
 	public double getTotalWeight() {
 		double total = 0;

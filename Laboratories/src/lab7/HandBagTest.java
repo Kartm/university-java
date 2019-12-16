@@ -51,4 +51,14 @@ public class HandBagTest {
 		handBag = new HandBag(false);
 		assertFalse(handBag.getIsPremiumQuality());
 	}
+
+	@Test
+	public void testToString() throws Exception {
+		handBag = new HandBag(true);
+		assertEquals(handBag.toString(), "Is premium quality: true\n" + 
+				"HandBag. Current capacity: [0/5]\n");
+		handBag = new HandBag(false);
+		assertEquals(handBag.toString(), "Is premium quality: false\n" + 
+				"HandBag. Current capacity: [0/5]\n");
+	}
 }
