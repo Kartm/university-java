@@ -1,7 +1,9 @@
 package lab9;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -62,36 +64,33 @@ public class RegexTester {
 		return true;
 	}
 
-	public void executeCommand(String token) {
+	public String executeCommand(String token) {
 		Command cmd = parseRawCommand(token);
-		executeCommand(cmd);
+		return resolveCommand(cmd);
 	}
 
-	public void executeCommand(Command cmd) {
+	public String resolveCommand(Command cmd) {
 		if (areFieldsValid() == false || cmd == null) {
-			System.out.println("Invalid file, regex or command.");
-			executeCommand(Command.EXIT);
-			return;
+			return ("Invalid file, regex or command."
+					+ resolveCommand(Command.EXIT));
+
 		}
 
 		switch (cmd) {
 		case SEARCH: {
-			searchRegex();
-			break;
+			return searchRegex();
 		}
 		case LIST: {
-			listRegex();
-			break;
+			return listRegex();
 		}
 		default: {
-			System.out.println("Exit.");
-			return;
+			return "Exit.";
 		}
 		}
 	}
 
 	private String[] getMatches(String token, Pattern regex) {
-		List<String> allMatches = new ArrayList<String>();
+		ArrayList<String> allMatches = new ArrayList<String>();
 		Matcher m = regex.matcher(token);
 		while (m.find()) {
 			allMatches.add(m.group());
@@ -107,41 +106,58 @@ public class RegexTester {
 		return result;
 	}
 
-	private void searchRegex() {
+	private String searchRegex() {
+		String output = "[SEARCH]\n";
 		try {
 			Scanner fileSc = new Scanner(this.file);
-			int index = 0;
+			int lineIndex = 1;
 			while (fileSc.hasNextLine()) {
 				String currLine = fileSc.nextLine();
-				System.out.println("[" + index + "] "
-						+ arrToString(getMatches(currLine, this.regex)));
-				index++;
+				String[] matches = getMatches(currLine, this.regex);
+				if (matches.length > 0) {
+					output += ("[" + lineIndex + "] " + arrToString(matches)
+							+ "\n");
+				}
+
+				lineIndex++;
 			}
 			fileSc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("File not found.");
+			output += ("File not found.\n");
 		}
+		return output;
 	}
 
-	private void listRegex() {
+	private String listRegex() {
+		String output = "[LIST]\n";
 		try {
 			Scanner fileSc = new Scanner(this.file);
-			int index = 0;
+			int lineIndex = 1;
 			while (fileSc.hasNextLine()) {
-				System.out.println("[" + index + "] " + fileSc.nextLine());
-				index++;
+				output += ("[" + lineIndex + "] " + fileSc.nextLine() + "\n");
+				lineIndex++;
 			}
 			fileSc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("File not found.");
+			output += ("File not found.\n");
 		}
+		return output;
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		try {
+			String regexToken = "in";
+			RegexTester regexTester = new RegexTester(
+					"/home/arach/Repositories/university-java/Laboratories/src/lab9/file",
+					regexToken);
+			System.out.println(regexTester.executeCommand("LIST"));
+			System.out.println(regexTester.executeCommand("SEARCH"));
+			System.out.println(regexTester.executeCommand("EXIT"));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

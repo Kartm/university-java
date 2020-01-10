@@ -1,12 +1,12 @@
 package lab8;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class BinaryNumber {
 	private char[] binary = new char[32];
 
 	public BinaryNumber(int val) {
-		// todo
 		this.setBinary(BinaryNumber.fromInt(val).getBinary());
 	}
 
@@ -15,7 +15,6 @@ public class BinaryNumber {
 	}
 
 	public BinaryNumber(char[] bn) {
-		// todo correctness
 		this.setBinary(bn);
 	}
 
@@ -56,7 +55,7 @@ public class BinaryNumber {
 		if (binary[0] == '0') {
 			// positive number
 			return binaryCharToInt(binary);
-		} else  {
+		} else {
 			// binary number
 			BinaryNumber bn = new BinaryNumber(binary);
 			bn = BinaryNumber.getTwosComplement(bn);
@@ -80,7 +79,7 @@ public class BinaryNumber {
 		}
 		return res;
 	}
-	
+
 	public BinaryNumber calcAND(BinaryNumber other) {
 		BinaryNumber newBin = new BinaryNumber(0); // empty number
 		char[] result = new char[32];
@@ -89,7 +88,7 @@ public class BinaryNumber {
 		char[] otherBinary = other.getBinary();
 		for (int i = thisBinary.length - 1; i >= 0; i--) {
 			// they're both 1's
-			if (thisBinary[i] - otherBinary[i] == 0 && thisBinary[i] == '1') { 
+			if (thisBinary[i] - otherBinary[i] == 0 && thisBinary[i] == '1') {
 				result[i] = Character.forDigit(1, 10);
 			} else {
 				result[i] = Character.forDigit(0, 10);
@@ -99,18 +98,18 @@ public class BinaryNumber {
 		newBin.setBinary(result);
 		return newBin;
 	}
-	
+
 	public BinaryNumber calcAND(int other) {
 		BinaryNumber otherBinary = BinaryNumber.fromInt(other);
 		return this.calcAND(otherBinary);
 	}
-	
+
 	public static BinaryNumber calcAND(int first, int second) {
 		BinaryNumber firstBinary = BinaryNumber.fromInt(first);
 		BinaryNumber secondBinary = BinaryNumber.fromInt(second);
 		return firstBinary.calcAND(secondBinary);
 	}
-	
+
 	public BinaryNumber calcOR(BinaryNumber other) {
 		BinaryNumber newBin = new BinaryNumber(0); // empty number
 		char[] result = new char[32];
@@ -130,7 +129,7 @@ public class BinaryNumber {
 		newBin.setBinary(result);
 		return newBin;
 	}
-	
+
 	public BinaryNumber calcOR(int other) {
 		BinaryNumber otherBinary = BinaryNumber.fromInt(other);
 		return this.calcOR(otherBinary);
@@ -141,7 +140,7 @@ public class BinaryNumber {
 		BinaryNumber secondBinary = BinaryNumber.fromInt(second);
 		return firstBinary.calcOR(secondBinary);
 	}
-	
+
 	public BinaryNumber calcXOR(BinaryNumber other) {
 		BinaryNumber newBin = new BinaryNumber(0); // empty number
 		char[] result = new char[32];
@@ -159,7 +158,7 @@ public class BinaryNumber {
 		newBin.setBinary(result);
 		return newBin;
 	}
-	
+
 	public BinaryNumber calcXOR(int other) {
 		BinaryNumber otherBinary = BinaryNumber.fromInt(other);
 		return this.calcXOR(otherBinary);
@@ -170,7 +169,7 @@ public class BinaryNumber {
 		BinaryNumber secondBinary = BinaryNumber.fromInt(second);
 		return firstBinary.calcXOR(secondBinary);
 	}
-	
+
 	public static BinaryNumber getTwosComplement(BinaryNumber bn) {
 		char[] bitmask = new char[32];
 
@@ -223,9 +222,24 @@ public class BinaryNumber {
 	}
 
 	public static void main(String[] args) {
-		BinaryNumber bn = new BinaryNumber(6);
-
-		bn = new BinaryNumber(-600);
-		System.out.println(bn.toInt());
+		Scanner sc = new Scanner(System.in);
+		
+//		Examples of expression to handle:
+//			5 && 8 // for AND
+//			7 || "1" // for OR
+//			"001" ^ "11" //for XOR
+		while(sc.hasNextLine()) {
+			String line = sc.nextLine();
+			String[] exp = line.trim().split("\\s++");
+			if(exp.length == 3) {
+				BinaryNumber a = new BinaryNumber(exp[0]);
+				BinaryNumber b = new BinaryNumber(exp[2]);
+				System.out.println(a.toString() + " " + b.toString());
+			} else {
+				System.out.println("Invalid expression parameters. Exit.");
+				break;
+			}
+		}
+		sc.close();
 	}
 }

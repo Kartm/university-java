@@ -1,0 +1,1 @@
+java -classpath bin/ Class09.AnalyzeFileWithNumbers file
