@@ -192,4 +192,24 @@ public class BinaryNumberTest {
 		assertEquals(BinaryNumber.calcXOR(1000, 1000).toInt(), 0);
 		assertEquals(BinaryNumber.calcXOR(123, 321).toInt(), 314);	
 	}
+
+	@Test
+	public void testCalcFromToken() throws Exception {
+		assertEquals(BinaryNumber.calcFromToken("0000 && 1111").toString(), "00000000000000000000000000000000");
+	}
+	
+	@Test
+	public void testCalcFromTokenNumbers() throws Exception {
+		assertEquals(BinaryNumber.calcFromToken("12 && 200").toString(), "00000000000000000000000000001000");
+	}
+	
+	@Test
+	public void testCalcFromTokenBinary() throws Exception {
+		assertEquals(BinaryNumber.calcFromToken("\"100\" ^ \"10000\"").toString(), "00000000000000000000000000010100");
+	}
+	
+	@Test
+	public void testCalcFromTokenMixed() throws Exception {
+		assertEquals(BinaryNumber.calcFromToken("123 ^ \"110010100\"").toString(), "00000000000000000000000111101111");
+	}
 }

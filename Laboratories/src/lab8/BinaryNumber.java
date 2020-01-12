@@ -221,24 +221,56 @@ public class BinaryNumber {
 		System.out.print("\n");
 	}
 
+	public static String calcFromToken(String token) {
+		String[] exp = token.trim().split("\\s++");
+		if (exp.length == 3) {
+			BinaryNumber aBinary = null;
+			BinaryNumber bBinary = null;
+
+			String a = exp[0];
+			String b = exp[2];
+
+			if (a.matches("\".*\"")) {
+				aBinary = new BinaryNumber(a.replace("\"", ""));
+			} else if (a.matches("^[0-9]*$")) {
+				aBinary = new BinaryNumber(Integer.parseInt(a));
+			} else {
+				System.out.println("Invalid first number.");
+			}
+
+			if (b.matches("\".*\"")) {
+				bBinary = new BinaryNumber(b.replace("\"", ""));
+			} else if (a.matches("^[0-9]*$")) {
+				bBinary = new BinaryNumber(Integer.parseInt(b));
+			} else {
+				System.out.println("Invalid first number.");
+			}
+
+			if (aBinary != null && bBinary != null) {
+				String operation = exp[1];
+				if (operation.matches("&&")) {
+					return aBinary.calcAND(bBinary).toString();
+				} else if (operation.matches("||")) {
+					return aBinary.calcOR(bBinary).toString();
+				} else if (operation.matches("\\^")) {
+					return aBinary.calcXOR(bBinary).toString();
+				} else {
+					return "Unknown operation.";
+				}
+			}
+		} else {
+			return "Invalid expression parameters. Exit.";
+		}
+		return null;
+
+	}
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
-//		Examples of expression to handle:
-//			5 && 8 // for AND
-//			7 || "1" // for OR
-//			"001" ^ "11" //for XOR
-		while(sc.hasNextLine()) {
+
+		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
-			String[] exp = line.trim().split("\\s++");
-			if(exp.length == 3) {
-				BinaryNumber a = new BinaryNumber(exp[0]);
-				BinaryNumber b = new BinaryNumber(exp[2]);
-				System.out.println(a.toString() + " " + b.toString());
-			} else {
-				System.out.println("Invalid expression parameters. Exit.");
-				break;
-			}
+			System.out.println(calcFromToken(line));
 		}
 		sc.close();
 	}
